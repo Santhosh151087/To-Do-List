@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>To-Do list</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+
+  
+  <style>
+  body {
+    background-color: #e3f2fd;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  #inputbox {
+    margin: 10px;
+    padding: 10px;
+    color: #333333;
+    text-align: center;
+    font-size: 18px;
+    width: 300px;
+  }
+
+  #boxx {
+    font-size: 18px;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  ul#list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul#list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    border: 1px solid #2193b0;
+    border-radius: 8px;
+    background-color: #eaf6fd;
+    margin-bottom: 12px;
+  }
+
+  ul#list li input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+  }
+
+  ul#list li button#delete {
+    margin-left: auto;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+
+  ul#list li button#delete:hover {
+    background-color: #d32f2f;
+  }
+</style>
+
+
+</head>
+
+<body>
+    <header>
+        <center>
+            <h1>📝To-Do List</h1>
+        </center>
+    </header>
+    <center>
+        <input id="inputbox" placeholder="Input your Task's" />
+        <button id="add" onclick="clicked()">ADD</button>
+    </center>
+    <br />
+    <hr />
+    <div>
+        <center>
+            <h1 id="to"></h1>
+        </center>
+        <div id="boxx">
+            <ul id="list"></ul>
+        </div>
+    </div>
+
+    <script>
+        function clicked() {
+            var to = document.getElementById("to");
+            var input = document.getElementById("inputbox");
+            var list = document.getElementById("list");
+
+            var val = input.value;
+            if (val == "") return;
+
+            to.textContent = "Todays task's";
+
+            var li = document.createElement("li");
+
+            var check = document.createElement("input");
+            check.type = "checkbox";
+           
+            var del = document.createElement("button");
+            del.textContent = "DELETE";
+            del.id="delete"
+          
+            del.onclick = function () {
+                li.remove();  
+            }
+
+
+            li.appendChild(check);
+            li.appendChild(document.createTextNode(val)); 
+
+            li.appendChild(del);
+            list.insertAdjacentElement("beforeend", li);
+
+            input.value = "";
+        }
+    </script>
+</body>
+
+</html>
